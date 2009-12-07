@@ -1,4 +1,4 @@
-# Start me with : rackup ramaze.ru
+# Start me with : rackup rack.ru
 # Default port is 9292
 
 require File::expand_path('../yamlade', File.dirname(__FILE__)) # When installed, just use : require 'yamlade'
