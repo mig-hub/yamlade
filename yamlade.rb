@@ -3,7 +3,7 @@ class Yamlade
   def initialize(f)
     @file = f
   end
-  def to_form
+  def to_fields
     o = "<h3>#{::File.basename(@file, '.yml').upcase}</h3>"
     config = YAML.load_file(@file)
     config.each do |k,v|
@@ -31,6 +31,11 @@ class Yamlade
     end
     o
   end
+  
+  def to_form(url)
+    "<form action='#{url}' method='POST' enctype='multipart/form-data'>#{self.to_form}<input type='submit' name='save' value='SAVE' /></form>"
+  end
+  
   def update(h)
     puts h.inspect
     imgs = h.find_all {|k,v| k[/_file$/] }

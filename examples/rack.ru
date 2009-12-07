@@ -14,9 +14,8 @@ edit = proc do |env|
   if request.post?
     @conf.update(request['yaml'])
   end
-  form = "<form action='#{request.path_info}' method='POST' enctype='multipart/form-data'>#{@conf.to_form}<input type='submit' name='save' value='SAVE' /></form>"
   
-  [ 200, {'Content-Type' => 'text/html'}, form ]
+  [ 200, {'Content-Type' => 'text/html'}, @conf.to_form(request.path_info) ]
 end
 
 map '/edit' do

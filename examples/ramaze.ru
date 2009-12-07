@@ -15,7 +15,7 @@ class MainController < Ramaze::Controller
     if request.post?
       @conf.update(request['yaml'])
     end
-    "<form action='#{request.path_info}' method='POST' enctype='multipart/form-data'>#{@conf.to_form}<input type='submit' name='save' value='SAVE' /></form>" 
+    @conf.to_form(request.path_info)
   end
   
   # /see
