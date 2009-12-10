@@ -3,7 +3,7 @@
 
 require File::expand_path('../yamlade', File.dirname(__FILE__)) # When installed, just use : require 'yamlade'
 
-$:.unshift(::File.dirname(__FILE__)) # Add parent folder to the path
+
 
 # EDIT
 

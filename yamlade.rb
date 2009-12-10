@@ -33,7 +33,7 @@ class Yamlade
   end
   
   def to_form(url)
-    "<form action='#{url}' method='POST' enctype='multipart/form-data'>#{self.to_form}<input type='submit' name='save' value='SAVE' /></form>"
+    "<form action='#{url}' method='POST' enctype='multipart/form-data'>#{self.to_fields}<input type='submit' name='save' value='SAVE' /></form>"
   end
   
   def update(h)
