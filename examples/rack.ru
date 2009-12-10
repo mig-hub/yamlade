@@ -3,8 +3,6 @@
 
 require File::expand_path('../yamlade', File.dirname(__FILE__)) # When installed, just use : require 'yamlade'
 
-
-
 # EDIT
 
 map '/edit' do

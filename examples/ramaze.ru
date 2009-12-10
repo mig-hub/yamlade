@@ -5,8 +5,6 @@ require 'rubygems'
 require 'ramaze'
 require File::expand_path('../yamlade', File.dirname(__FILE__)) # When installed, just use : require 'yamlade'
 
-
-
 class MainController < Ramaze::Controller
  
   # /edit
