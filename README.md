@@ -46,13 +46,17 @@ And then you're ready to go.
 	
 If you want to get the html form for your config file:
 
-	@conf.to_form
+	@conf.to_form(action_url)
+	
+Or just this if you only need the fields to wrap them in your own form:
+
+	@conf.to_fields
 	
 And when the POST request arrives, your object is in the 'yaml' key. So use it for updating your file:
 
 	@conf.update(request['yaml'])
 	
-That's it, only two methods for the moment.
+That's it, only three methods for the moment.
 See examples if you're not sure.
 I'll try to put examples for as many frameworks as i can.
 
