@@ -111,8 +111,8 @@ Here is a Ramaze example:
     response['Content-Type'] = mime[/[^:]*\/[^;]*/]   # remove what is around the mime-type
     response.status = 200
     response.write data.unpack("m")[0]                # decode base64
-    throw(:respond, response)
-  end
+   	throw(:respond, response)
+	end
 
 And then you can have your pictures with urls like : /data/conf/logo__data
 
