@@ -1,7 +1,9 @@
 require 'yaml'
 class Yamlade
-  def initialize(f)
+  def initialize(f, public_root=::File.expand_path('../public/', f))
     @file = f
+    @public_root =  public_root
+    @public_root << '/' unless public_root[/\/$/]
   end
   def to_fields
     o = "<h3>#{::File.basename(@file, '.yml').upcase}</h3>"
@@ -16,8 +18,10 @@ class Yamlade
       when 'text'
         "<textarea cols='40' rows='5' name='yaml[#{k}]'>#{v}</textarea>"
       when 'file'
-        preview = (v.nil? || v=='') ? '' : "<img src='#{v}' width='100' /><br />"
+        preview = (v.nil? || v=='') ? '' : "<img src='/#{v}' width='100' /><br />"
         "#{preview}<input type='file' name='yaml[#{k}]' />"
+      when 'data'
+        "<input type='file' name='yaml[#{k}]' />"
       when 'boolean'
         s = [' checked', nil]
         s.reverse! unless v=='true'
@@ -37,15 +41,29 @@ class Yamlade
   end
   
   def update(h)
-    puts h.inspect
-    imgs = h.find_all {|k,v| k[/_file$/] }
-    imgs.each do |img|
-      field, img_hash = img
-      tempfile, content_type = img_hash.values_at(:tempfile, :type)
+    config = YAML.load_file(@file)
+    # Data
+    datas = h.find_all {|k,v| k[/_data$/] }
+    datas.each do |data|
+      field, data_hash = data
+      tempfile, content_type = data_hash.values_at(:tempfile, :type)
       h[field] = "data:#{content_type};base64,#{[::File.open(tempfile.path).read].pack('m').strip}"
       tempfile.close(true)
     end
-    config = YAML.load_file(@file).update(h)
+    # File
+    files = h.find_all {|k,v| k[/_file$/] }
+    files.each do |file|
+      field, file_hash = file
+      tempfile, content_type = file_hash.values_at(:tempfile, :type)
+      unless config[field].to_s.empty? or tempfile.nil?
+        FileUtils.move(tempfile.path, "#{@public_root}#{config[field]}", :force => true)
+        FileUtils.chmod(0777, "#{@public_root}#{config[field]}")
+        tempfile.close(true)
+      end
+      h.delete(field)
+    end
+    # Update
+    config = config.update(h)
     ::File.open(@file, 'w') {|f| YAML.dump(config, f) }
   end
 end

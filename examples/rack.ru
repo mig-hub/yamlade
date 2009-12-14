@@ -3,6 +3,12 @@
 
 require File::expand_path('../yamlade', File.dirname(__FILE__)) # When installed, just use : require 'yamlade'
 
+# PUBLIC ROOT
+
+map '/' do
+  run Rack::File.new(File.expand_path('./public', File.dirname(__FILE__)))
+end
+
 # EDIT
 
 map '/edit' do
