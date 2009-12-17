@@ -6,11 +6,11 @@ class Yamlade
     @public_root << '/' unless public_root[/\/$/]
   end
   def to_fields
-    o = "<h3>#{::File.basename(@file, '.yml').upcase}</h3>"
+    o = "<h3>#{::File.basename(@file, '.yml').upcase.tr('_', ' ')}</h3>"
     config = YAML.load_file(@file)
     config.each do |k,v|
       label, type = k.split('__')
-      o << "<p>#{label.capitalize}<br />"
+      o << "<p>#{label.capitalize.tr('_', ' ')}<br />"
       
       o << case type
       when 'string'
