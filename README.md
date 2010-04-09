@@ -71,7 +71,9 @@ If you don't, Yamlade consider the folder called 'public' next to your YAML file
 	conf = Yamlade.new('conf.yml', ::File.expand_path('../public/', 'conf.yml'))
 	
 The other thing to know, is that you have to give a name when building Yaml file the first time.
-That way allows you to give paths deeper than public root if necessary:
+Basicaly you force the name of the file instead of keeping the original file name.
+It helps Yamlade to overwrite the previously recorded file.
+That way also allows you to give paths deeper than public root if necessary:
 
 	header__file: layout/header.jpeg
 	
