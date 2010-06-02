@@ -2,5 +2,5 @@
 banner__file: my_picture.jpeg
 publish__boolean: "false"
 logo__data: 
-box_content__text: y
-title__string: ""
+box_content__text: 
+title__string: 
