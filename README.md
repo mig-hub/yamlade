@@ -1,28 +1,22 @@
-YAMLADE - Use YAML files to cook configuration Marmelade
---------------------------------------------------------
+YAMLADE - Use YAML files to cook configuration Marmelade for a website
+----------------------------------------------------------------------
 
 WHAT DOES IT DO ?
 -----------------
 
 Yamlade is made for config files of a web application.
 Things that should be unique but still editable in a CMS.
+Basically, Yamlade helps you with the CMS part of it, building the forms for you
+and dealing with the updates.
 
 HOW TO INSTALL IT ?
 -------------------
 
-The only important file of this package is yamlade.rb
-Put it wherever you can require it, and that should be alright.
-If you want to share it with all your apps, just put the folder somewhere in your ruby path (ex: /Library/Ruby/Site/1.8/)
-Rename this folder "yamlade", then create next to it a file "yamlade.rb" containing just that:
-
-	require 'yamlade/yamlade'
+	# sudo gem install yamlade
 	
-And then from anywhere you'll be able to do:
+And then require it:
 
 	require 'yamlade'
-
-Don't know if i'm really clear, but there are many sources on the web for that.
-Or maybe i'll do a Gem someday... who knows?
 
 HOW TO USE IT ?
 ---------------
@@ -36,9 +30,6 @@ ex: options.yml
 	content__text:
 	banner__file: desired_file_name.jpeg
 	logo__data:
-
-!!! Don't forget to put at least one space after the last key
-Types available for the moment are : string, text, boolean, file and data
 
 And then you're ready to go.
 
