@@ -124,5 +124,5 @@ Maybe I'll try to find a way to deal both situations...
 (C)
 ---
 
-Copyright (c)2009 Mickael Riga - See MIT_LICENCE for more details
+Copyright (c) 2009 - 2010 Mickael Riga - See MIT_LICENCE for more details
 	
