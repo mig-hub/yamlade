@@ -7,17 +7,17 @@ require File::expand_path('../yamlade', File.dirname(__FILE__)) # When installed
 
 class MainController < Ramaze::Controller
  
-  # /edit
-  def edit
+  # /
+  def index
     @conf = Yamlade.new("options.yml")
     if request.post?
       @conf.update(request['yaml'])
     end
-    @conf.to_form(request.path_info)
+    @conf.to_form(request.path_info) + "<br /><br /><a href='/inspect'>&gt;&gt; INSPECT</a>"
   end
   
-  # /see
-  def see
+  # /inspect
+  def inspect
     YAML.load_file("options.yml").inspect
   end
   

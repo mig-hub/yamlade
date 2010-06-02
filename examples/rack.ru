@@ -20,13 +20,13 @@ map '/edit' do
       @conf.update(request['yaml'])
     end
 
-    [ 200, {'Content-Type' => 'text/html'}, @conf.to_form(request.path_info) ]
+    [ 200, {'Content-Type' => 'text/html'}, @conf.to_form(request.path_info) + "<br /><br /><a href='/inspect'>&gt;&gt; INSPECT</a>" ]
   }
 end
 
-# SEE
+# INSPECT
 
-map '/see' do
+map '/inspect' do
   run lambda { |env|
     [ 200, {'Content-Type' => 'text/html'}, YAML.load_file("options.yml").inspect ]
   }
