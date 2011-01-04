@@ -18,7 +18,7 @@ class Yamlade
       when 'text'
         "<textarea cols='40' rows='5' name='yaml[#{k}]'>#{v}</textarea>"
       when 'file'
-        preview = (v.nil? || v=='') ? '' : "<img src='/#{v}' width='100' /><br />"
+        preview = (v.nil? || v=='' || !v[/(\.gif|\.png|\.jpg|\.jpeg)$/]) ? '' : "<img src='/#{v}' width='100' /><br />"
         "#{preview}<input type='file' name='yaml[#{k}]' />"
       when 'data'
         "<input type='file' name='yaml[#{k}]' />"
